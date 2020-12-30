@@ -1,0 +1,6 @@
+# name of the secret with your postgres credentials
+secret: postgres-kubernetes-operator
+
+# CRD scope
+scope: Cluster
+

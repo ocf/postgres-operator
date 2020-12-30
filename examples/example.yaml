@@ -1,0 +1,6 @@
+# A username/database pair.
+apiVersion: ocf.io/v1
+kind: PostgresPair
+metadata:
+  name: example
+spec: {}

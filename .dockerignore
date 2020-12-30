@@ -1,0 +1,12 @@
+.dockerignore
+Dockerfile
+.venv
+.vscode
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+chart/
+examples/
+util/

@@ -1,0 +1,29 @@
+# Requires Kubernetes 1.16+
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: postgrespairs.ocf.io
+spec:
+  scope: {{ .Values.scope }}
+  group: ocf.io
+  names:
+    kind: PostgresPair
+    plural: postgrespairs
+    singular: postgrespair
+    shortNames:
+      - pgpair
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties: {}
+              x-kubernetes-preserve-unknown-fields: true
+            status:
+              type: object
+              x-kubernetes-preserve-unknown-fields: true

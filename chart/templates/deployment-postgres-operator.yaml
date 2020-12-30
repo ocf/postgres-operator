@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-operator
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      application: postgres-operator
+  template:
+    metadata:
+      labels:
+        application: postgres-operator
+    spec:
+      serviceAccountName: postgres-operator-sa
+      containers:
+      - name: postgres-operator
+        image: harbor.ocf.berkeley.edu/library/postgres-kubernetes-operator:v1.0
+        imagePullPolicy: IfNotPresent
+        # Probably entirely overkill, but hey whatever.
+        resources:
+            requests:
+              cpu: "500m"
+              memory: "256Mi"
+            limits:
+              cpu: "1000m"
+              memory: "512Mi"
