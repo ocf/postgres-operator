@@ -17,13 +17,26 @@ spec:
       serviceAccountName: postgres-operator-sa
       containers:
       - name: postgres-operator
-        image: harbor.ocf.berkeley.edu/library/postgres-kubernetes-operator:v1.0
+        image: ghcr.io/ocf/postgres-operator:latest
         imagePullPolicy: IfNotPresent
-        # Probably entirely overkill, but hey whatever.
-        resources:
-            requests:
-              cpu: "500m"
-              memory: "256Mi"
-            limits:
-              cpu: "1000m"
-              memory: "512Mi"
+        env:
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: pg-op-secret
+              key: DB_HOST
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: pg-op-secret
+              key: DB_NAME
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: pg-op-secret
+              key: DB_USER
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: pg-op-secret
+              key: DB_PASS
