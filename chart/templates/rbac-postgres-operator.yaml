@@ -21,7 +21,7 @@ rules:
   # Application: access for watching cluster-wide.
   - apiGroups: [ocf.io]
     resources: [postgrespairs]
-    verbs: [list, watch]
+    verbs: [list, watch, patch, get]
 
   # We create secrets but don't want to be able to access them.
   - apiGroups: [""]
@@ -50,13 +50,13 @@ rules:
   # Application: watching & handling for the custom resource we declare.
   - apiGroups: [ocf.io]
     resources: [postgrespairs]
-    verbs: [list, watch, patch]
+    verbs: [list, watch, patch, get]
 
   # Application: other resources it produces and manipulates.
   # We create secrets but don't want to be able to access them.
   - apiGroups: [""]
     resources: [secrets]
-    verbs: [create]
+    verbs: [create, patch]
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
