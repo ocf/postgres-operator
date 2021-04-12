@@ -14,6 +14,7 @@ def connect_to_db():
         user=os.environ.get("DB_USER", "postgres"),
         password=os.environ.get("DB_PASS"),
     )
+    pg_connection.set_session(readonly=False)
     pg_connection.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
     return pg_connection.cursor()
 
@@ -27,7 +28,7 @@ def create_fn(name: str, **kwargs):
     Args:
         name (str): The Kubernetes object name.
     """
-    cur = connect_to_db(readonly=False)
+    cur = connect_to_db()
 
     # TODO: Make sure this didn't throw an error.
     username = psycopg2.extensions.AsIs(name)
