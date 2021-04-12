@@ -27,7 +27,7 @@ def create_fn(name: str, **kwargs):
     Args:
         name (str): The Kubernetes object name.
     """
-    cur = connect_to_db()
+    cur = connect_to_db(readonly=False)
 
     # TODO: Make sure this didn't throw an error.
     username = psycopg2.extensions.AsIs(name)
