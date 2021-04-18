@@ -1,7 +1,6 @@
 # postgres-kubernetes-operator
 
 A highly-opinionated operator to create databases from Kubernetes objects. This was built for the Berkeley Open Computing Facility, you probably shouldn't use this yourself.
----
 
 ## What this does...
 - [Create / Delete] Users
